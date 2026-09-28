@@ -68,8 +68,20 @@ lucasramos.uy/brand/kit/ (como las fuentes), así hay una sola versión viva.
 `href` (la raíz por defecto) o con la pill `lucasramos.uy ↗` si lleva `pill`.
 El folio mono va en `meta`; las acciones propias de cada sitio van en el slot
 `actions` y las estila cada sitio. Tema por atributos: `alto`, `fondo`,
-`linea`, `tinta`, `meta-color`. El `meta` se oculta bajo 560px y el header
-completo se oculta al imprimir.
+`linea`, `tinta`, `meta-color`. El atributo `sufijo` agrega un tag mono en
+versalitas junto al wordmark (por ejemplo `sufijo="ESTUDIO"`). El `meta` se
+oculta bajo 560px y el header completo se oculta al imprimir.
+
+Para ajustes finos por sitio, el shadow DOM expone `::part`: `header`,
+`brand`, `meta`, `pill` y `sufijo`. Los quirks locales (alto responsive con
+breakpoint propio, padding, tracking del wordmark) se escriben como reglas
+`kit-header::part(...)` en el CSS del sitio, no como atributos nuevos:
+
+```css
+kit-header::part(header){height:68px;padding:0 max(5vw,22px)}
+kit-header::part(brand){font-size:24px;font-weight:800;letter-spacing:-.07em}
+@media(max-width:800px){kit-header::part(header){height:62px}}
+```
 
 `kit-footer`: © año a la izquierda, links a la derecha. Por defecto `©` del
 año en curso y Contacto + GitHub; se ajustan con `anio`, `texto` y
@@ -78,3 +90,4 @@ año en curso y Contacto + GitHub; se ajustan con `anio`, `texto` y
 
 La duplicación que resuelven es conceptual, no de markup idéntico: cada
 producto conserva sus acciones, su folio y su paleta vía parámetros.
+
