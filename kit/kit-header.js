@@ -7,9 +7,13 @@
 //   </kit-header>
 // Atributos: producto (wordmark, el punto va solo), acento (color del punto),
 // href (destino del wordmark, por defecto la raíz), meta (folio mono opcional),
-// alto, fondo, linea, tinta, meta-color. Con `pill` el wordmark no enlaza y
-// muestra la pill "lucasramos.uy ↗" a la derecha. El contenido sloteado en
-// `actions` se maqueta a la derecha y lo estila cada sitio.
+// alto, fondo, linea, tinta, meta-color, sufijo (tag mono junto al wordmark,
+// ej. ESTUDIO). Con `pill` el wordmark no enlaza y muestra la pill
+// "lucasramos.uy ↗" a la derecha. El contenido sloteado en `actions` se
+// maqueta a la derecha y lo estila cada sitio.
+// Parts: header, brand, meta, pill, sufijo. Con ::part el sitio ajusta lo
+// específico (alto responsive, padding, tracking del wordmark) sin tocar el
+// componente: @media(max-width:800px){kit-header::part(header){height:62px}}
 (function () {
   "use strict";
 
@@ -26,6 +30,8 @@
     .pill{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.09em;
       color:var(--kh-meta-color,#687168);margin-left:auto;
       border:1px solid var(--kh-linea,#c9cec6);border-radius:999px;padding:6px 10px}
+    .sufijo{font-family:'DM Mono',monospace;font-weight:400;font-size:9px;
+      letter-spacing:2px;color:var(--kh-meta-color,#687168);margin-left:12px}
     ::slotted([slot="actions"]){margin-left:auto}
     @media(min-width:561px){
       .meta + ::slotted([slot="actions"]){margin-left:0}
@@ -39,7 +45,7 @@
 
   class KitHeader extends HTMLElement {
     static get observedAttributes() {
-      return ["producto", "acento", "href", "meta", "alto", "fondo", "linea", "tinta", "meta-color", "pill"];
+      return ["producto", "acento", "href", "meta", "alto", "fondo", "linea", "tinta", "meta-color", "pill", "sufijo"];
     }
     connectedCallback() { this.render(); }
     attributeChangedCallback() { if (this.isConnected) this.render(); }
@@ -48,19 +54,21 @@
       const href = this.getAttribute("href") || "https://lucasramos.uy/";
       const meta = this.getAttribute("meta") || "";
       const pill = this.hasAttribute("pill");
+      const sufijo = this.getAttribute("sufijo") || "";
       for (const attr of ["alto", "fondo", "linea", "tinta", "meta-color", "acento"]) {
         const v = this.getAttribute(attr);
         if (v) this.style.setProperty("--kh-" + attr, attr === "alto" && /^\d+$/.test(v) ? v + "px" : v);
       }
+      const suf = sufijo ? `<small class="sufijo" part="sufijo">${sufijo}</small>` : "";
       const wordmark = pill
-        ? `<span class="brand">${producto}<span class="punto">.</span></span>`
-        : `<a class="brand" href="${href}" title="lucasramos.uy">${producto}<span class="punto">.</span></a>`;
+        ? `<span class="brand" part="brand">${producto}<span class="punto">.</span>${suf}</span>`
+        : `<a class="brand" part="brand" href="${href}" title="lucasramos.uy">${producto}<span class="punto">.</span>${suf}</a>`;
       const right = pill
-        ? `<span class="pill">lucasramos.uy ↗</span>`
-        : (meta ? `<span class="meta">${meta}</span>` : "");
+        ? `<span class="pill" part="pill">lucasramos.uy ↗</span>`
+        : (meta ? `<span class="meta" part="meta">${meta}</span>` : "");
       if (!this.shadowRoot) this.attachShadow({ mode: "open" });
       this.shadowRoot.innerHTML =
-        `<style>${css}</style><header>${wordmark}${right}<slot name="actions"></slot></header>`;
+        `<style>${css}</style><header part="header">${wordmark}${right}<slot name="actions"></slot></header>`;
     }
   }
   if (!customElements.get("kit-header")) customElements.define("kit-header", KitHeader);
