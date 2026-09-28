@@ -18,7 +18,7 @@ Dos niveles, siempre en minúscula con punto final:
 | Marca | Uso | Punto |
 |---|---|---|
 | `lucas.` | Identidad personal: raíz, /profe, /links, /contacto | Coral `#bb5943` (reservado) |
-| `producto.` | Cada producto: `wallpapers.`, `historias.`, `qr.`, `salida.`, `wrapped.`, `simuladores.`, `fotograma.`, `papeles.`, `conexiones.`, `rachas.` | Acento del producto |
+| `producto.` | Cada producto: `wallpapers.`, `historias.`, `qr.`, `salida.`, `wrapped.`, `simuladores.`, `fotograma.`, `papeles.`, `conexiones.`, `rachas.`, `snake.`, `2048.` | Acento del producto |
 
 - El coral `#bb5943` es exclusivo de `lucas.`. Ningún producto lo usa.
 - `lucas.` siempre enlaza a `/links` (el hub). El wordmark de cada producto
@@ -80,6 +80,8 @@ Acentos actuales:
 | wrapped. | Multi-acento data-viz (excepción registrada) | Oscura `#0f0e15` |
 | conexiones. | Vino `#7b2d43` | Cálida `#f7f5ef` |
 | rachas. | Melón `#c28b6e` (el mismo acento de “hilo.”) | Papel cálido `#eae8df` + sidebar verde `#253631`; app privada |
+| snake. | Teal `#1c756b` | `#f8f7f4` |
+| 2048. | Teal `#1c756c` | `#f8f7f4` |
 
 ## 5. Anatomía y voz
 
@@ -136,3 +138,4 @@ Estado: fotograma es la referencia. `qr.` y `salida.` migran con este patrón
 6. Fuentes del sistema solo como fallback final, nunca como fuente visible.
 7. Si exporta imágenes (canvas/PNG para compartir), aplicar el patrón de la
    sección 7: fuentes cargadas antes de pintar, nunca genéricas a secas.
+
