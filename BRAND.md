@@ -93,7 +93,38 @@ Acentos actuales:
 - Nunca emails personales en repos públicos ni en código.
 - Atribuciones públicas genéricas ("la Administración de ...").
 
-## 7. Checklist para un proyecto nuevo
+## 7. Imágenes exportadas (canvas y PNG para compartir)
+
+Toda imagen generada en el navegador (tarjetas, historias, tickets, posters)
+es superficie de marca: la regla dura de tipografía aplica igual ahí. El
+canvas nunca puede caer en fuente del sistema.
+
+Patrón único (referencia: fotograma):
+
+1. Declarar las fuentes del proyecto con `@font-face` self-hosteado (woff2),
+   incluyendo **todos los pesos que el canvas va a usar**.
+2. Antes de pintar, forzar la carga de cada (familia, peso):
+
+   ```js
+   await Promise.all([
+     document.fonts.load('700 56px "Space Grotesk"'),
+     document.fonts.load('26px "DM Mono"')
+   ]);
+   await document.fonts.ready;
+   ```
+
+   `document.fonts.load()` dispara la descarga del peso exacto aunque el DOM
+   no lo esté usando todavía. Si el peso no está declarado en el CSS, resuelve
+   vacío y el canvas cae al sistema: por eso el paso 1 es parte del patrón.
+3. Recién después pintar (`fillText`, `measureText`).
+4. Nunca `sans-serif` / `serif` / `monospace` a secas en `ctx.font`: la
+   familia del kit va primero y el genérico queda solo como fallback final.
+
+Estado: fotograma es la referencia. `qr.` y `salida.` migran con este patrón
+(PRs en curso); `historias` usa `document.fonts.ready` + plantillas (compatible).
+`rachas` y `leydle` (share-imagen), pendientes de migración cuando toquen.
+
+## 8. Checklist para un proyecto nuevo
 
 1. Elegir acento propio (que no choque con otro producto ni con el coral).
 2. Wordmark `producto.` con punto en el acento, enlazando al dominio.
@@ -101,3 +132,5 @@ Acentos actuales:
 4. Papel + tinta + acento; modo claro u oscuro según contenido/herramienta.
 5. Entrada en /links.
 6. Fuentes del sistema solo como fallback final, nunca como fuente visible.
+7. Si exporta imágenes (canvas/PNG para compartir), aplicar el patrón de la
+   sección 7: fuentes cargadas antes de pintar, nunca genéricas a secas.
