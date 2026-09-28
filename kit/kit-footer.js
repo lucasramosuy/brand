@@ -6,6 +6,8 @@
 // Atributos: anio (por defecto el año en curso), texto (reemplaza el ©),
 // links ("Contacto=/contacto/,GitHub=https://github.com/lucasramosuy"),
 // fondo, linea, tinta, hover. Se oculta solo al imprimir.
+// Parts: footer, texto, links (para ajustar padding, tipografía o layout
+// desde el CSS del sitio).
 (function () {
   "use strict";
 
@@ -47,7 +49,7 @@
       }
       if (!this.shadowRoot) this.attachShadow({ mode: "open" });
       this.shadowRoot.innerHTML =
-        `<style>${css}</style><footer><span>${texto}</span><nav>` +
+        `<style>${css}</style><footer part="footer"><span part="texto">${texto}</span><nav part="links">` +
         links.map((l) => `<a href="${l.url}">${l.label}</a>`).join("") +
         `</nav></footer>`;
     }
