@@ -27,7 +27,9 @@
       color:var(--kh-meta-color,#687168);margin-left:auto;
       border:1px solid var(--kh-linea,#c9cec6);border-radius:999px;padding:6px 10px}
     ::slotted([slot="actions"]){margin-left:auto}
-    .meta + ::slotted([slot="actions"]){margin-left:0}
+    @media(min-width:561px){
+      .meta + ::slotted([slot="actions"]){margin-left:0}
+    }
     @media(max-width:560px){
       header{padding:0 16px}
       .meta{display:none}
