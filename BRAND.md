@@ -18,7 +18,7 @@ Dos niveles, siempre en minúscula con punto final:
 | Marca | Uso | Punto |
 |---|---|---|
 | `lucas.` | Identidad personal: raíz, /profe, /links, /contacto | Coral `#bb5943` (reservado) |
-| `producto.` | Cada producto: `wallpapers.`, `historias.`, `qr.`, `salida.`, `wrapped.`, `simuladores.` | Acento del producto |
+| `producto.` | Cada producto: `wallpapers.`, `historias.`, `qr.`, `salida.`, `wrapped.`, `simuladores.`, `fotograma.`, `papeles.` | Acento del producto |
 
 - El coral `#bb5943` es exclusivo de `lucas.`. Ningún producto lo usa.
 - `lucas.` siempre enlaza a `/links` (el hub). El wordmark de cada producto
@@ -30,6 +30,8 @@ Dos niveles, siempre en minúscula con punto final:
 - **Normativa** es marca institucional propia: nombre completo "Normativa
   Uruguay", ícono banco, sin punto. Leydle es sub-marca suya y hereda su
   identidad. No forzar la convención del punto ahí.
+- **Fotograma** es un juego visual con identidad de producto `fotograma.`; la imagen compartida se genera en el navegador con las fuentes del kit.
+- **Papeles** es la herramienta local de PDF `papeles.`: los documentos no se suben al servidor.
 - **app-stm** vive fuera del dominio (Netlify) y hoy no forma parte del
   sistema. Si migra a un path, adopta wordmark con punto y entra a /links.
 
