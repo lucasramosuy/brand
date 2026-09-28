@@ -1,0 +1,78 @@
+# Workflow reutilizable de deploy a Cloudflare Workers.
+# Fuente: lucasramosuy/brand — cada proyecto lo llama con `uses:` e inputs;
+# el caller solo declara su trigger (push a main con paths, workflow_dispatch).
+name: Deploy a Workers (reutilizable)
+
+on:
+  workflow_call:
+    inputs:
+      app:
+        description: Nombre del proyecto (grupo de concurrencia del deploy).
+        required: true
+        type: string
+      cloudflare_account_id:
+        description: Account ID de Cloudflare.
+        required: true
+        type: string
+      build_command:
+        description: Comando de build y verificación.
+        required: false
+        type: string
+        default: bash build.sh
+      pnpm_version:
+        description: Versión de pnpm; dejar vacío para builds sin pnpm.
+        required: false
+        type: string
+        default: '12.6.0'
+      wrangler_version:
+        description: Versión de wrangler.
+        required: false
+        type: string
+        default: '4.140.0'
+      smoke_url:
+        description: URL a verificar tras el deploy (opcional).
+        required: false
+        type: string
+        default: ''
+      smoke_text:
+        description: Texto que smoke_url tiene que contener (opcional).
+        required: false
+        type: string
+        default: ''
+    secrets:
+      CLOUDFLARE_API_TOKEN:
+        required: true
+
+concurrency: ${{ inputs.app }}-deploy
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        if: inputs.pnpm_version != ''
+        with:
+          version: ${{ inputs.pnpm_version }}
+      - uses: actions/setup-node@v4
+        if: inputs.pnpm_version != ''
+        with:
+          node-version: '22'
+          cache: pnpm
+      - name: Build and check
+        run: ${{ inputs.build_command }}
+      - name: Deploy to Cloudflare Workers
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ inputs.cloudflare_account_id }}
+          wranglerVersion: ${{ inputs.wrangler_version }}
+      - name: Smoke test
+        if: inputs.smoke_url != ''
+        run: |
+          for i in 1 2 3 4 5; do
+            code=$(curl -Ls -o /tmp/smoke.html -w '%{http_code}' "${{ inputs.smoke_url }}")
+            if [ "$code" = 200 ] && grep -q '${{ inputs.smoke_text }}' /tmp/smoke.html; then exit 0; fi
+            sleep 5
+          done
+          exit 1
