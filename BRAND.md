@@ -18,7 +18,7 @@ Dos niveles, siempre en minúscula con punto final:
 | Marca | Uso | Punto |
 |---|---|---|
 | `lucas.` | Identidad personal: raíz, /profe, /links, /contacto | Coral `#bb5943` (reservado) |
-| `producto.` | Cada producto: `wallpapers.`, `historias.`, `qr.`, `salida.`, `wrapped.`, `simuladores.`, `fotograma.`, `papeles.`, `conexiones.` | Acento del producto |
+| `producto.` | Cada producto: `wallpapers.`, `historias.`, `qr.`, `salida.`, `wrapped.`, `simuladores.`, `fotograma.`, `papeles.`, `conexiones.`, `rachas.` | Acento del producto |
 
 - El coral `#bb5943` es exclusivo de `lucas.`. Ningún producto lo usa.
 - `lucas.` siempre enlaza a `/links` (el hub). El wordmark de cada producto
@@ -79,6 +79,7 @@ Acentos actuales:
 | salida. | Arcilla `#9b6c55` | Claro `#f3f1e9` (excepción de modo: herramienta clara) |
 | wrapped. | Multi-acento data-viz (excepción registrada) | Oscura `#0f0e15` |
 | conexiones. | Vino `#7b2d43` | Cálida `#f7f5ef` |
+| rachas. | Melón `#c28b6e` (el mismo acento de “hilo.”) | Papel cálido `#eae8df` + sidebar verde `#253631`; app privada |
 
 ## 5. Anatomía y voz
 
