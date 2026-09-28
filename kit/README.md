@@ -86,8 +86,45 @@ kit-header::part(brand){font-size:24px;font-weight:800;letter-spacing:-.07em}
 `kit-footer`: © año a la izquierda, links a la derecha. Por defecto `©` del
 año en curso y Contacto + GitHub; se ajustan con `anio`, `texto` y
 `links="Contacto=/contacto/,GitHub=https://github.com/lucasramosuy"`. Tema:
-`fondo`, `linea`, `tinta`, `hover`. También se oculta al imprimir.
+`fondo`, `linea`, `tinta`, `hover`. También se oculta al imprimir. El shadow expone
+`::part(footer)`, `::part(texto)` y `::part(links)` para ajustes finos de
+padding o tipografía desde el CSS del sitio.
 
 La duplicación que resuelven es conceptual, no de markup idéntico: cada
 producto conserva sus acciones, su folio y su paleta vía parámetros.
 
+
+# kit/kit-masthead.js y kit/kit-rail.js
+
+Variantes de encabezado para sitios cuya cabecera no es la barra estándar.
+Mismo modelo que kit-header: se sirven desde lucasramos.uy/brand/kit/ (una
+sola versión viva), tema por atributos y ajustes finos por ::part.
+
+```html
+<script src="/brand/kit/kit-masthead.js" defer></script>
+<kit-masthead producto="foto" producto2="grama" acento="#367263"
+  href="https://lucasramos.uy/" etiqueta="Fotograma, ir a lucasramos.uy">
+  <span slot="meta" id="issue">UNA FOTO · UNA PALABRA</span>
+</kit-masthead>
+
+<script src="/brand/kit/kit-rail.js" defer></script>
+<kit-rail producto="qr" acento="#70eac0" eyebrow="ESTUDIO DE CÓDIGOS / 001"
+  pie="DISEÑADO EN TU NAVEGADOR|NI CUENTA, NI SERVIDOR, NI COSTO.">
+  <h1>...</h1>
+</kit-rail>
+```
+
+`kit-masthead` (referencia: fotograma): cabecera tipográfica sin barra —
+marca en dos pesos (`producto` + `producto2` en peso 400) con punto en
+`acento`, y una meta mono a la derecha que va sloteada (`slot="meta"`) para
+que el sitio la lea y actualice por id. Sin meta sloteada sirve también como
+wordmark de pie. Atributos: `producto`, `producto2`, `href`, `etiqueta`
+(aria-label), `titulo` (title), `acento`, `tinta`, `meta-color`, `meta-font`.
+Parts: `masthead`, `brand`, `brand2`, `punto`.
+
+`kit-rail` (referencia: qr-studio): rail lateral con logo y punto de acento,
+eyebrow, contenido propio sloteado (título, intro, pasos — quedan en el DOM
+de la página y los estila el CSS del sitio) y pie editorial pegado abajo.
+Atributos: `producto`, `href`, `titulo`, `acento`, `tinta`, `fondo`, `linea`,
+`eyebrow`, `eyebrow-color`, `pie` (líneas separadas con `|`), `pie-color`.
+Parts: `rail`, `logo`, `punto`, `eyebrow`, `pie`.
