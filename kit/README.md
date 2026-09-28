@@ -44,3 +44,37 @@ Módulo sin dependencias con los helpers DOM que estaban repetidos idénticos en
 ```
 
 `esc(valor)` escapa `& < > " '` para interpolar texto en innerHTML (contenido o atributos); `null`/`undefined` devuelven cadena vacía. `$(id, base?)` es `getElementById` que lanza un error claro si el id no existe. `descargarBlob(blob, nombre)` dispara la descarga y revoca la URL; `descargarJSON(datos, nombre)` serializa con 2 espacios y salto de línea final. Actualizar las copias junto al módulo canónico cuando cambie su API.
+
+
+# kit/kit-header.js y kit/kit-footer.js
+
+Web components sin dependencias para el header y el footer compartidos. A
+diferencia de los otros módulos, NO se copian: se sirven desde
+lucasramos.uy/brand/kit/ (como las fuentes), así hay una sola versión viva.
+
+```html
+<script src="/brand/kit/kit-header.js" defer></script>
+<script src="/brand/kit/kit-footer.js" defer></script>
+
+<kit-header producto="salida" acento="#a5674d" meta="TALLER DE CLASE / 001">
+  <button slot="actions" class="header-action" onclick="window.print()">Imprimir hoja ↗</button>
+</kit-header>
+
+<kit-footer></kit-footer>
+```
+
+`kit-header`: wordmark del producto a la izquierda (minúscula, punto en
+`acento`, compuesto en Space Grotesk bold con tracking cerrado), enlazando a
+`href` (la raíz por defecto) o con la pill `lucasramos.uy ↗` si lleva `pill`.
+El folio mono va en `meta`; las acciones propias de cada sitio van en el slot
+`actions` y las estila cada sitio. Tema por atributos: `alto`, `fondo`,
+`linea`, `tinta`, `meta-color`. El `meta` se oculta bajo 560px y el header
+completo se oculta al imprimir.
+
+`kit-footer`: © año a la izquierda, links a la derecha. Por defecto `©` del
+año en curso y Contacto + GitHub; se ajustan con `anio`, `texto` y
+`links="Contacto=/contacto/,GitHub=https://github.com/lucasramosuy"`. Tema:
+`fondo`, `linea`, `tinta`, `hover`. También se oculta al imprimir.
+
+La duplicación que resuelven es conceptual, no de markup idéntico: cada
+producto conserva sus acciones, su folio y su paleta vía parámetros.
