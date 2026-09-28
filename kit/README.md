@@ -13,3 +13,18 @@ await downloadPng(canvas, 'historia.png');
 ```
 
 `fitText(ctx, text, ancho, tamañoInicial, tamañoMínimo, tamaño => cssFont)` reduce el tamaño hasta que entra. `wrapLines` devuelve hasta N líneas y marca el corte con puntos suspensivos. `fillRound` dibuja un rectángulo redondeado. `canvasPngBlob` permite mostrar el PNG antes de descargarlo. No usar familias genéricas como primera fuente del canvas. Actualizar las copias junto al módulo canónico cuando cambie su API.
+
+
+# kit/theme.js
+
+Módulo sin dependencias para el toggle claro/oscuro. Se copia en cada proyecto bajo `kit/theme.js`, con el encabezado de procedencia. El tema vive en `[data-tema]` del `<html>` y cada proyecto define sus tokens en `:root[data-tema="oscuro"]`; el módulo no trae CSS ni colores, salvo el `meta theme-color` si se le pasan.
+
+```html
+<script src="./kit/theme.js"></script>
+<script>
+  KitTema.inicial({clave: 'mi-app-tema', colores: {claro: '#f4f1ea', oscuro: '#171410'}, evento: 'mi-app-theme-change'});
+  KitTema.montar('#btn-tema');
+</script>
+```
+
+`inicial` resuelve el tema (preferencia guardada; si no hay, la del sistema), lo aplica antes del primer pintado y devuelve el tema aplicado. `montar` cablea el botón: `aria-pressed`/`aria-label`, click para alternar, persistencia y evento de cambio. `crearBoton()` devuelve el botón 44×44 para proyectos sin SSR. Los cambios del sistema solo se siguen cuando no hay preferencia guardada. Actualizar las copias junto al módulo canónico cuando cambie su API.
