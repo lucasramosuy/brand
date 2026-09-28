@@ -28,3 +28,19 @@ Módulo sin dependencias para el toggle claro/oscuro. Se copia en cada proyecto 
 ```
 
 `inicial` resuelve el tema (preferencia guardada; si no hay, la del sistema), lo aplica antes del primer pintado y devuelve el tema aplicado. `montar` cablea el botón: `aria-pressed`/`aria-label`, click para alternar, persistencia y evento de cambio. `crearBoton()` devuelve el botón 44×44 para proyectos sin SSR. Los cambios del sistema solo se siguen cuando no hay preferencia guardada. Actualizar las copias junto al módulo canónico cuando cambie su API.
+
+
+# kit/dom.js
+
+Módulo sin dependencias con los helpers DOM que estaban repetidos idénticos en varios proyectos. Se copia en cada proyecto bajo `kit/dom.js`, con el encabezado de procedencia.
+
+```html
+<script src="./kit/dom.js"></script>
+<script>
+  const titulo = KitDom.$('f-titulo');
+  salida.innerHTML = `<h1>${KitDom.esc(titulo.value)}</h1>`;
+  KitDom.descargarJSON(datos, 'respaldo.json');
+</script>
+```
+
+`esc(valor)` escapa `& < > " '` para interpolar texto en innerHTML (contenido o atributos); `null`/`undefined` devuelven cadena vacía. `$(id, base?)` es `getElementById` que lanza un error claro si el id no existe. `descargarBlob(blob, nombre)` dispara la descarga y revoca la URL; `descargarJSON(datos, nombre)` serializa con 2 espacios y salto de línea final. Actualizar las copias junto al módulo canónico cuando cambie su API.
