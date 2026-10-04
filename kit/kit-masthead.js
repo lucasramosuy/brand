@@ -26,7 +26,9 @@
       font-size:31px;font-weight:700;letter-spacing:-.085em;line-height:1}
     .brand2{font-weight:400}
     .punto{color:var(--km-acento,#367263);font-style:normal}
-    ::slotted([slot=meta]){font-size:10px;letter-spacing:.1em;
+    .brand:focus-visible{outline:2px solid var(--km-acento,#367263);outline-offset:3px;border-radius:4px}
+    @media(pointer:coarse){.brand{display:inline-flex;align-items:center;min-height:44px}}
+    ::slotted([slot=meta]){font-size:11px;letter-spacing:.1em;
       font-family:var(--km-meta-font,'DM Mono',monospace);
       color:var(--km-meta-color,#617168)}
   `;
