@@ -17,10 +17,15 @@
       background:var(--kf-fondo,#f3f1e9);color:var(--kf-tinta,#687168);
       display:flex;justify-content:space-between;align-items:center;gap:20px;
       padding:22px max(28px,calc((100vw - 1080px)/2));
-      font-family:'DM Mono',monospace;font-size:11px}
+      font-family:'DM Mono',monospace;font-size:12px}
     nav{display:flex;gap:22px}
     a{color:inherit;text-decoration:none}
-    a:hover{color:var(--kf-hover,#293a32)}
+    @media(hover:hover){a:hover{color:var(--kf-hover,#293a32)}}
+    a:focus-visible{outline:2px solid currentColor;outline-offset:2px;border-radius:4px}
+    @media(pointer:coarse){
+      nav{gap:14px}
+      a{display:inline-flex;align-items:center;min-height:44px;padding:0 4px}
+    }
     @media(max-width:560px){footer{padding:20px 18px}}
     @media print{:host{display:none!important}}
   `;
