@@ -18,7 +18,7 @@ Dos niveles, siempre en minúscula con punto final:
 | Marca | Uso | Punto |
 |---|---|---|
 | `lucas.` | Identidad personal: raíz, /profe, /links, /contacto | Coral `#bb5943` (reservado) |
-| `producto.` | Cada producto: `wallpapers.`, `historias.`, `qr.`, `salida.`, `wrapped.`, `simuladores.`, `fotograma.`, `papeles.`, `conexiones.`, `rachas.`, `snake.`, `2048.`, `rebote.` | Acento del producto |
+| `producto.` | Cada producto: `wallpapers.`, `historias.`, `qr.`, `salida.`, `wrapped.`, `simuladores.`, `fotograma.`, `papeles.`, `conexiones.`, `rachas.`, `snake.`, `2048.`, `rebote.`, `panel.` | Acento del producto |
 
 - El coral `#bb5943` es exclusivo de `lucas.`. Ningún producto lo usa.
 - `lucas.` siempre enlaza a `/links` (el hub). El wordmark de cada producto
@@ -83,6 +83,32 @@ Acentos actuales:
 | snake. | Teal `#1c756b` | `#f8f7f4` |
 | 2048. | Teal `#1c756c` | `#f8f7f4` |
 | rebote. | Lima `#c9dc7a` | Oscura `#0b0d0c` |
+| panel. | Pizarra `#3d6b8e` (claro) / `#8db5d3` (oscuro) | Papel `#f6f5f1` / oscura `#0f1214`; claro y oscuro de primera clase |
+
+### Tokens de panel.
+
+`panel.` es el panel académico (`/dashboard`). Su acento es un azul grisáceo
+"pizarra", distinto del coral de `lucas.`, del verde de Normativa, del teal de
+snake./2048. y del cobalto de la raíz. Vive en el punto del wordmark, la palabra
+`<em>` de los titulares, los subrayados de enlaces secundarios, la barra de
+progreso y el foco. Los botones primarios son tinta sólida, no acento.
+
+| Token | Claro | Oscuro |
+|---|---|---|
+| Acento | `#3d6b8e` | `#8db5d3` |
+| Papel (fondo) | `#f6f5f1` | `#0f1214` |
+| Tarjetas | `#fcfbf8` | `#161a1d` |
+| Tinta (texto y botón primario) | `#1b1f24` | `#eceae4` |
+| Borde | `#e3e1da` | `#252a2e` |
+| Ok | `#2f6f55` | `#7fc3a2` |
+| Aviso | `#946017` | `#e0b068` |
+| Error | `#9a3b32` | `#e08a80` |
+
+- Estados como chips con fondo tintado (el color al 12-14% sobre la tarjeta),
+  punto de color y radio 8. Sin cápsulas ni barras laterales de acento.
+- Tipografía: Space Grotesk para la interfaz y DM Mono para eyebrows
+  numerados ("01 / PENDIENTES"), autoalojadas, nunca fuentes del sistema.
+- Wordmark `panel.` en el sidebar (arriba) y centrado en la barra móvil.
 
 ## 5. Anatomía y voz
 
