@@ -29,10 +29,12 @@
       font-size:30px;font-weight:700;letter-spacing:-2px}
     .punto{font-style:normal;color:var(--kr-acento,#70eac0)}
     .eyebrow{margin:56px 0 16px;font-family:'DM Mono',monospace;
-      font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+      font-size:11px;letter-spacing:.1em;text-transform:uppercase;
       color:var(--kr-eyebrow-color,#849c9b)}
+    .logo:focus-visible{outline:2px solid var(--kr-acento,#70eac0);outline-offset:3px;border-radius:4px}
+    @media(pointer:coarse){.logo{display:inline-flex;align-items:center;min-height:44px}}
     .pie{margin-top:auto;color:var(--kr-pie-color,#6a817e);
-      font-family:'DM Mono',monospace;font-size:10px;line-height:1.7}
+      font-family:'DM Mono',monospace;font-size:11px;line-height:1.7}
   `;
 
   class KitRail extends HTMLElement {
