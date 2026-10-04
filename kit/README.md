@@ -128,3 +128,21 @@ de la página y los estila el CSS del sitio) y pie editorial pegado abajo.
 Atributos: `producto`, `href`, `titulo`, `acento`, `tinta`, `fondo`, `linea`,
 `eyebrow`, `eyebrow-color`, `pie` (líneas separadas con `|`), `pie-color`.
 Parts: `rail`, `logo`, `punto`, `eyebrow`, `pie`.
+
+
+# kit/kit-base.css
+
+Base táctil (Apple HIG) para todos los proyectos. Se sirve desde
+lucasramos.uy/brand/kit-base.css, junto a `kit-fonts.css`, y no se copia:
+
+```html
+<link rel="stylesheet" href="/brand/kit-fonts.css">
+<link rel="stylesheet" href="/brand/kit-base.css">
+```
+
+Trae tres reglas con especificidad 0 (`:where`), que el sitio puede pisar:
+controles de formulario a 16 px en pantallas táctiles (evita el zoom de iOS),
+`:focus-visible` con `--kit-foco` y `prefers-reduced-motion`. Los componentes
+`kit-header`, `kit-footer`, `kit-rail` y `kit-masthead` resuelven sus propios
+targets de 44 px y su foco dentro del shadow DOM, porque un CSS global no les
+llega. Reglas completas en BRAND.md, sección 9.

@@ -1,0 +1,31 @@
+/* Base táctil del kit (Apple HIG), servida desde lucasramos.uy/brand/kit-base.css.
+   Fuente de verdad: repo brand, kit/kit-base.css. Uso, junto a las fuentes:
+   <link rel="stylesheet" href="/brand/kit-fonts.css">
+   <link rel="stylesheet" href="/brand/kit-base.css">
+   Va antes del CSS propio del sitio. Todo con especificidad 0 (:where) salvo
+   los controles de formulario: un sitio lo pisa sin !important. */
+
+/* 16px en controles evita el zoom automático de iOS al enfocarlos.
+   Solo en pantallas táctiles: en escritorio cada sitio conserva su densidad. */
+@media (pointer: coarse) {
+  :where(input:not([type=checkbox], [type=radio], [type=range], [type=color], [type=file]), select, textarea) {
+    font-size: 16px;
+  }
+}
+
+/* Foco visible solo con teclado; el color lo define el sitio con --kit-foco. */
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--kit-foco, currentColor);
+  outline-offset: 2px;
+}
+
+/* Quien prefiere menos movimiento. Los juegos y visualizaciones con
+   animación esencial lo acotan en su propio CSS. */
+@media (prefers-reduced-motion: reduce) {
+  :where(*, *::before, *::after) {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

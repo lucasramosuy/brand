@@ -166,3 +166,27 @@ Estado: fotograma es la referencia. `qr.` y `salida.` migran con este patrón
 7. Si exporta imágenes (canvas/PNG para compartir), aplicar el patrón de la
    sección 7: fuentes cargadas antes de pintar, nunca genéricas a secas.
 
+
+## 9. Móvil y Apple HIG
+
+Criterios mínimos para cualquier superficie del dominio. Se revisan en iPhone
+(390 px) antes de mergear.
+
+- **Targets táctiles:** 44×44 pt como mínimo. Se agranda el área (padding,
+  `min-height`), no el dibujo. En el kit, los componentes lo resuelven bajo
+  `@media (pointer: coarse)`, así escritorio conserva su densidad.
+- **Controles de formulario:** 16 px como mínimo en `input`, `select` y
+  `textarea` (menos dispara el zoom de iOS al enfocar). `kit-base.css` lo
+  aplica en táctil; si un sitio define un tamaño con un selector más
+  específico, tiene que repetir los 16 px en `pointer: coarse`.
+- **Hover:** los estados `:hover` van dentro de `@media (hover: hover)`; en
+  táctil el hover queda pegado tras el toque.
+- **Foco visible:** `:focus-visible` con anillo propio (no el azul del
+  navegador). Nunca `outline: none` sin un reemplazo.
+- **Movimiento:** `prefers-reduced-motion` respetado. `kit-base.css` lo
+  incluye; los juegos con animación esencial lo acotan en su CSS.
+- **Texto:** 11 px es el piso para etiquetas mono; 12 px o más para lectura.
+- **Safe areas:** con `viewport-fit=cover`, las barras fijas usan
+  `env(safe-area-inset-*)`.
+- **Zoom:** no se bloquea (`user-scalable=no`, `maximum-scale=1`). Un canvas de
+  juego usa `touch-action: none` solo en el propio canvas.

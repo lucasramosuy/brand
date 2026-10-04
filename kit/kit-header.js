@@ -11,6 +11,8 @@
 // ej. ESTUDIO). Con `pill` el wordmark no enlaza y muestra la pill
 // "lucasramos.uy ↗" a la derecha. El contenido sloteado en `actions` se
 // maqueta a la derecha y lo estila cada sitio.
+// Táctil (pointer:coarse): wordmark y acciones sloteadas con 44px de alto de
+// toque, sin cambiar el dibujo. Foco visible con el acento del producto.
 // Parts: header, brand, meta, pill, sufijo. Con ::part el sitio ajusta lo
 // específico (alto responsive, padding, tracking del wordmark) sin tocar el
 // componente: @media(max-width:800px){kit-header::part(header){height:62px}}
@@ -39,6 +41,13 @@
     @media(max-width:560px){
       header{padding:0 16px}
       .meta{display:none}
+    }
+    .brand:focus-visible,.pill:focus-visible{outline:2px solid var(--kh-acento,currentColor);
+      outline-offset:3px;border-radius:4px}
+    @media(pointer:coarse){
+      .brand{display:inline-flex;align-items:center;min-height:44px}
+      a.pill{display:inline-flex;align-items:center;min-height:44px}
+      ::slotted([slot="actions"]){min-height:44px}
     }
     @media print{:host{display:none!important}}
   `;
