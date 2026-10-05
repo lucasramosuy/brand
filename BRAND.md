@@ -190,3 +190,32 @@ Criterios mínimos para cualquier superficie del dominio. Se revisan en iPhone
   `env(safe-area-inset-*)`.
 - **Zoom:** no se bloquea (`user-scalable=no`, `maximum-scale=1`). Un canvas de
   juego usa `touch-action: none` solo en el propio canvas.
+
+
+## 10. Tema claro / oscuro
+
+El kit trae un modo oscuro opcional, fiel a la estructura **papel + tinta + un
+acento**: en oscuro la tinta pasa a fondo, el papel a texto y el acento de cada
+producto no cambia.
+
+| Token | Claro | Oscuro |
+|---|---|---|
+| `--kit-fondo` | `#f3f1e9` | `#161916` |
+| `--kit-tinta` | `#222721` | `#ece9de` |
+| `--kit-linea` | `#c9cec6` | `#343a33` |
+| `--kit-meta` | `#687168` | `#a2aaa0` |
+| `--kit-hover` | `#293a32` | `#f7f5ec` |
+
+- El tema vive en `<html data-tema="oscuro">`. Lo pone `kit/theme.js`
+  (preferencia guardada; si no hay, la del sistema) y el toggle es
+  `KitTema.crearBoton()`, un botón 44×44 con sol y luna que `kit-base.css` ya
+  estila (`.tema-pill`).
+- Sin `data-tema="oscuro"` los tokens valen lo de siempre: adoptar el kit no
+  cambia ningún sitio. Cada proyecto decide cuándo pasa a oscuro.
+- `kit-header`, `kit-footer` y `kit-masthead` leen los tokens cuando no tienen
+  atributos de color. Un atributo explícito (`fondo`, `tinta`...) gana; un
+  sitio que adopta oscuro pasa `var(--kit-fondo)` y no un hex fijo.
+- `kit-rail` ya es oscuro por diseño y no cambia.
+- Contraste medido de `--kit-meta` sobre `--kit-fondo` en oscuro: más de 7:1.
+- Regla vigente: contenido = claro, herramienta/editor = oscuro. El toggle
+  permite al lector cambiar, no cambia el default de cada producto.
