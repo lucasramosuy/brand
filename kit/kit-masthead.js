@@ -22,7 +22,7 @@
   const css = `
     :host{display:block}
     .masthead{display:flex;justify-content:space-between;align-items:center}
-    .brand{color:var(--km-tinta,#202522);text-decoration:none;
+    .brand{color:var(--km-tinta,var(--kit-tinta,#202522));text-decoration:none;
       font-size:31px;font-weight:700;letter-spacing:-.085em;line-height:1}
     .brand2{font-weight:400}
     .punto{color:var(--km-acento,#367263);font-style:normal}
@@ -30,7 +30,7 @@
     @media(pointer:coarse){.brand{display:inline-flex;align-items:center;min-height:44px}}
     ::slotted([slot=meta]){font-size:11px;letter-spacing:.1em;
       font-family:var(--km-meta-font,'DM Mono',monospace);
-      color:var(--km-meta-color,#617168)}
+      color:var(--km-meta-color,var(--kit-meta,#617168))}
   `;
 
   class KitMasthead extends HTMLElement {

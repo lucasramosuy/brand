@@ -29,3 +29,52 @@
     scroll-behavior: auto !important;
   }
 }
+
+
+/* Tema claro/oscuro. Papel + tinta + un acento: el oscuro invierte los dos
+   neutros (tinta como fondo, papel como texto) y deja el acento de cada
+   producto tal cual. El tema vive en <html data-tema="oscuro">; lo pone
+   kit/theme.js (preferencia guardada o la del sistema). Sin ese atributo
+   los tokens no cambian nada: el kit sigue claro. Los componentes kit-header,
+   kit-footer y kit-masthead los leen cuando no tienen atributos de color. */
+:root {
+  --kit-fondo: #f3f1e9;
+  --kit-tinta: #222721;
+  --kit-linea: #c9cec6;
+  --kit-meta: #687168;
+  --kit-hover: #293a32;
+}
+:root[data-tema="oscuro"] {
+  color-scheme: dark;
+  --kit-fondo: #161916;
+  --kit-tinta: #ece9de;
+  --kit-linea: #343a33;
+  --kit-meta: #a2aaa0;
+  --kit-hover: #f7f5ec;
+}
+
+/* Botón del toggle que crea KitTema.crearBoton(): 44x44, solo texto/glifo,
+   muestra el sol en claro y la luna en oscuro. */
+:where(.tema-pill) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0 10px;
+  border: 1px solid var(--kit-linea);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--kit-tinta);
+  font: inherit;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+}
+:where(.tema-pill .t-luna) { display: none; }
+:root[data-tema="oscuro"] :where(.tema-pill .t-sol) { display: none; }
+:root[data-tema="oscuro"] :where(.tema-pill .t-luna) { display: inline; }
+@media (hover: hover) {
+  :where(.tema-pill):hover { color: var(--kit-hover); border-color: var(--kit-meta); }
+}
