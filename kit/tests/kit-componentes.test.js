@@ -25,3 +25,20 @@ test('kit-base.css: inputs a 16px en táctil, foco y reduced-motion', () => {
   assert.match(css, /:focus-visible/);
   assert.match(css, /prefers-reduced-motion: reduce/);
 });
+
+
+test('tema oscuro: los componentes leen los tokens --kit-* y kit-base los define', () => {
+  const css = leer('kit-base.css');
+  assert.match(css, /:root\[data-tema="oscuro"\]\s*\{[^}]*--kit-fondo/);
+  assert.match(css, /:root\[data-tema="oscuro"\]\s*\{[^}]*--kit-tinta/);
+  assert.match(css, /\.tema-pill/);
+  assert.match(css, /min-height: 44px/);
+  for (const [nombre, token] of [['kit-header.js', '--kit-fondo'], ['kit-footer.js', '--kit-fondo'], ['kit-masthead.js', '--kit-tinta']]) {
+    assert.match(leer(nombre), new RegExp('var\\(' + token), nombre + ': no lee ' + token);
+  }
+});
+
+test('tema oscuro: el atributo explícito sigue ganando sobre el token', () => {
+  assert.match(leer('kit-header.js'), /var\(--kh-fondo,var\(--kit-fondo,/);
+  assert.match(leer('kit-footer.js'), /var\(--kf-fondo,var\(--kit-fondo,/);
+});
