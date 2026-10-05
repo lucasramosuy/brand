@@ -13,6 +13,10 @@
 // maqueta a la derecha y lo estila cada sitio.
 // Táctil (pointer:coarse): wordmark y acciones sloteadas con 44px de alto de
 // toque, sin cambiar el dibujo. Foco visible con el acento del producto.
+// Tema oscuro: sin atributos de color, el header toma los tokens --kit-* de
+// kit-base.css (activos con <html data-tema="oscuro">). Un atributo explícito
+// (fondo, tinta...) gana sobre el token: un sitio que adopta el modo oscuro
+// pasa var(--kit-fondo), no un hex fijo.
 // Parts: header, brand, meta, pill, sufijo. Con ::part el sitio ajusta lo
 // específico (alto responsive, padding, tracking del wordmark) sin tocar el
 // componente: @media(max-width:800px){kit-header::part(header){height:62px}}
@@ -21,19 +25,19 @@
 
   const css = `
     :host{display:block}
-    header{height:var(--kh-alto,72px);background:var(--kh-fondo,#f3f1e9);
-      border-bottom:1px solid var(--kh-linea,#c9cec6);display:flex;
-      align-items:center;gap:22px;padding:0 28px;color:var(--kh-tinta,#222721)}
+    header{height:var(--kh-alto,72px);background:var(--kh-fondo,var(--kit-fondo,#f3f1e9));
+      border-bottom:1px solid var(--kh-linea,var(--kit-linea,#c9cec6));display:flex;
+      align-items:center;gap:22px;padding:0 28px;color:var(--kh-tinta,var(--kit-tinta,#222721))}
     .brand{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:28px;
       letter-spacing:-2px;text-decoration:none;color:inherit}
     .brand .punto{color:var(--kh-acento,inherit)}
     .meta{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.09em;
-      color:var(--kh-meta-color,#687168);margin-left:auto;text-transform:uppercase}
+      color:var(--kh-meta-color,var(--kit-meta,#687168));margin-left:auto;text-transform:uppercase}
     .pill{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.09em;
-      color:var(--kh-meta-color,#687168);margin-left:auto;
-      border:1px solid var(--kh-linea,#c9cec6);border-radius:999px;padding:6px 10px}
+      color:var(--kh-meta-color,var(--kit-meta,#687168));margin-left:auto;
+      border:1px solid var(--kh-linea,var(--kit-linea,#c9cec6));border-radius:999px;padding:6px 10px}
     .sufijo{font-family:'DM Mono',monospace;font-weight:400;font-size:9px;
-      letter-spacing:2px;color:var(--kh-meta-color,#687168);margin-left:12px}
+      letter-spacing:2px;color:var(--kh-meta-color,var(--kit-meta,#687168));margin-left:12px}
     ::slotted([slot="actions"]){margin-left:auto}
     @media(min-width:561px){
       .meta + ::slotted([slot="actions"]){margin-left:0}
