@@ -5,6 +5,7 @@
 //   <kit-footer></kit-footer>
 // Atributos: anio (por defecto el año en curso), texto (reemplaza el ©),
 // links ("Contacto=/contacto/,GitHub=https://github.com/lucasramosuy"),
+// raiz ("no" para omitir el link "lucasramos.uy" que va siempre primero),
 // fondo, linea, tinta, hover. Se oculta solo al imprimir.
 // Parts: footer, texto, links (para ajustar padding, tipografía o layout
 // desde el CSS del sitio).
@@ -39,7 +40,7 @@
 
   class KitFooter extends HTMLElement {
     static get observedAttributes() {
-      return ["anio", "texto", "links", "fondo", "linea", "tinta", "hover"];
+      return ["anio", "texto", "links", "raiz", "fondo", "linea", "tinta", "hover"];
     }
     connectedCallback() { this.render(); }
     attributeChangedCallback() { if (this.isConnected) this.render(); }
@@ -48,6 +49,8 @@
       const texto = this.getAttribute("texto") || `© ${anio}`;
       const links = parseLinks(this.getAttribute("links") ||
         "Contacto=/contacto/,GitHub=https://github.com/lucasramosuy");
+      // Regla del kit: el link a la raíz del dominio vive en el footer de todos.
+      if (this.getAttribute("raiz") !== "no") links.unshift({ label: "lucasramos.uy", url: "https://lucasramos.uy/" });
       for (const attr of ["fondo", "linea", "tinta", "hover"]) {
         const v = this.getAttribute(attr);
         if (v) this.style.setProperty("--kf-" + attr, v);
