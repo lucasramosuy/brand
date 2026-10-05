@@ -75,7 +75,7 @@
       const suf = sufijo ? `<small class="sufijo" part="sufijo">${sufijo}</small>` : "";
       const wordmark = pill
         ? `<span class="brand" part="brand">${producto}<span class="punto">.</span>${suf}</span>`
-        : `<a class="brand" part="brand" href="${href}" title="lucasramos.uy">${producto}<span class="punto">.</span>${suf}</a>`;
+        : `<a class="brand" part="brand" href="${href}" title="Inicio de ${producto}">${producto}<span class="punto">.</span>${suf}</a>`;
       const right = pill
         ? `<span class="pill" part="pill">lucasramos.uy ↗</span>`
         : (meta ? `<span class="meta" part="meta">${meta}</span>` : "");

@@ -42,3 +42,13 @@ test('tema oscuro: el atributo explícito sigue ganando sobre el token', () => {
   assert.match(leer('kit-header.js'), /var\(--kh-fondo,var\(--kit-fondo,/);
   assert.match(leer('kit-footer.js'), /var\(--kf-fondo,var\(--kit-fondo,/);
 });
+
+test('kit-footer: el link a la raíz va primero salvo raiz="no"', () => {
+  const src = leer('kit-footer.js');
+  assert.match(src, /raiz/);
+  assert.match(src, /label: "lucasramos\.uy", url: "https:\/\/lucasramos\.uy\/"/);
+});
+
+test('kit-header: el wordmark no se titula con la raíz', () => {
+  assert.doesNotMatch(leer('kit-header.js'), /title="lucasramos\.uy"/);
+});

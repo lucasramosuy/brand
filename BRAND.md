@@ -22,7 +22,14 @@ Dos niveles, siempre en minúscula con punto final:
 
 - El coral `#bb5943` es exclusivo de `lucas.`. Ningún producto lo usa.
 - `lucas.` siempre enlaza a `/links` (el hub). El wordmark de cada producto
-  enlaza a `https://lucasramos.uy/` o muestra la pill `lucasramos.uy ↗`.
+  enlaza a **la home del propio producto** (`/simuladores/`, `/papeles/`,
+  etc.), nunca a la raíz y nunca muestra la pill `lucasramos.uy ↗`.
+- El link a la raíz del dominio vive en el **footer** de todos los proyectos,
+  como un único "lucasramos.uy" con el estilo de `kit-footer` (el kit-footer
+  lo pone primero por defecto; `raiz="no"` lo omite). El header no lleva
+  links a la raíz ni acciones de salida: queda wordmark, nav y acciones propias.
+- En `kit-header`, pasar siempre `href` con la home del producto. El atributo
+  `pill` queda deprecado.
 - El wordmark se compone en Space Grotesk bold con tracking cerrado.
 
 ### Excepciones registradas
