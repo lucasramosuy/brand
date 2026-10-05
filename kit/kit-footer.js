@@ -13,14 +13,14 @@
 
   const css = `
     :host{display:block}
-    footer{border-top:1px solid var(--kf-linea,#c9cec6);
-      background:var(--kf-fondo,#f3f1e9);color:var(--kf-tinta,#687168);
+    footer{border-top:1px solid var(--kf-linea,var(--kit-linea,#c9cec6));
+      background:var(--kf-fondo,var(--kit-fondo,#f3f1e9));color:var(--kf-tinta,var(--kit-meta,#687168));
       display:flex;justify-content:space-between;align-items:center;gap:20px;
       padding:22px max(28px,calc((100vw - 1080px)/2));
       font-family:'DM Mono',monospace;font-size:12px}
     nav{display:flex;gap:22px}
     a{color:inherit;text-decoration:none}
-    @media(hover:hover){a:hover{color:var(--kf-hover,#293a32)}}
+    @media(hover:hover){a:hover{color:var(--kf-hover,var(--kit-hover,#293a32))}}
     a:focus-visible{outline:2px solid currentColor;outline-offset:2px;border-radius:4px}
     @media(pointer:coarse){
       nav{gap:14px}
