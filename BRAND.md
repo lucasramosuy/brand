@@ -172,6 +172,20 @@ Estado: fotograma es la referencia. `qr.` y `salida.` migran con este patrón
 6. Fuentes del sistema solo como fallback final, nunca como fuente visible.
 7. Si exporta imágenes (canvas/PNG para compartir), aplicar el patrón de la
    sección 7: fuentes cargadas antes de pintar, nunca genéricas a secas.
+8. Ruta en Cloudflare: el proyecto necesita su ruta explícita
+   (`lucasramos.uy/<proyecto>*`) hacia su Worker, o el proxy si vive en
+   GitHub Pages u otro Pages, o vivir dentro del sitio `www` como carpeta
+   `/<proyecto>/`. Ver la nota siguiente.
+
+### Rutas en Cloudflare
+
+Desde el 10/10/2026 la ruta ancha `lucasramos.uy/*` ya no existe: la portada y
+todo lo estático los sirve el proyecto Pages `www` directo, sin pasar por un
+Worker. Un proyecto nuevo que no tenga ruta propia ni esté dentro de `www`
+devuelve el 404 de Pages. El fallback `p-<nombre>.pages.dev` del proxy murió
+con la ruta ancha y no se usa más. Las rutas se cargan en el panel de
+Cloudflare (Rutas de Workers de la zona `lucasramos.uy`), no en un repo, así
+que hay que avisar cuando se agrega una.
 
 
 ## 9. Móvil y Apple HIG
