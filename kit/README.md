@@ -162,7 +162,7 @@ Web component del remate editorial: el cierre grande `lucas.` con tinta y punto 
 <kit-remate cta="no" arriba-href="#"></kit-remate>
 ```
 
-Atributos de copy, todos opcionales (`|` separa líneas): `eyebrow`, `titulo` (la segunda línea va en serif), `descripcion`, `cta` (`no` lo omite) y `cta-href`, `palabra`, `tagline`, `firma`, `texto` o `anio`, `links` (`Etiqueta=url,...`), `arriba` (`no` lo omite) y `arriba-href`. Los textos se insertan como texto, no como HTML, y las URLs se limitan a relativas, anclas, http(s) y mailto.
+Atributos de copy, todos opcionales (`|` separa líneas): `eyebrow`, `titulo` (la segunda línea va en serif), `descripcion`, `cta` (`no` lo omite) y `cta-href`, `palabra`, `tagline`, `firma`, `texto`, `anio` o `sufijo` (`sufijo="Profe"` da «© <año> Lucas · Profe» con el año automático; usarlo en vez de un `texto` fijo), `links` (`Etiqueta=url,...`), `arriba` (`no` lo omite) y `arriba-href`. Los textos se insertan como texto, no como HTML, y las URLs se limitan a relativas, anclas, http(s) y mailto.
 
 Color: atributos `papel`, `tinta`, `punto`, `meta`, `linea` o las variables `--kr-papel`, `--kr-tinta`, `--kr-punto`, `--kr-meta`, `--kr-linea`. Parts: `remate`, `titulo`, `palabra`, `pie`.
 
