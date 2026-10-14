@@ -162,6 +162,14 @@ Web component del remate editorial: el cierre grande `lucas.` con tinta y punto 
 <kit-remate cta="no" arriba-href="#"></kit-remate>
 ```
 
+Variante compacta para herramientas y estudios (franja baja, sin titular, CTA ni palabra gigante), con la paleta del sitio por atributos:
+
+```html
+<kit-remate variante="compacta" papel="#10171d" linea="#34464a" meta="#91aaa2" tinta="#e8f2ee" hover="#bff4dd"></kit-remate>
+```
+
+`lucas.` enlaza a `palabra-href` (por defecto `/links/`). Muestra `firma` (por defecto "Hecho en Uruguay"), el © (`sufijo`, `texto` y `anio` valen igual) y `links` (por defecto solo `Contacto=/contacto/`). Colores: `papel`, `tinta`, `punto`, `meta`, `linea`, `hover`.
+
 Atributos de copy, todos opcionales (`|` separa líneas): `eyebrow`, `titulo` (la segunda línea va en serif), `descripcion`, `cta` (`no` lo omite) y `cta-href`, `palabra`, `tagline`, `firma`, `texto`, `anio` o `sufijo` (`sufijo="Profe"` da «© <año> Lucas · Profe» con el año automático; usarlo en vez de un `texto` fijo), `links` (`Etiqueta=url,...`), `arriba` (`no` lo omite) y `arriba-href`. Los textos se insertan como texto, no como HTML, y las URLs se limitan a relativas, anclas, http(s) y mailto.
 
 Color: atributos `papel`, `tinta`, `punto`, `meta`, `linea` o las variables `--kr-papel`, `--kr-tinta`, `--kr-punto`, `--kr-meta`, `--kr-linea`. Parts: `remate`, `titulo`, `palabra`, `pie`.
