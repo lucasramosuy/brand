@@ -240,3 +240,35 @@ producto no cambia.
 - Contraste medido de `--kit-meta` sobre `--kit-fondo` en oscuro: más de 7:1.
 - Regla vigente: contenido = claro, herramienta/editor = oscuro. El toggle
   permite al lector cambiar, no cambia el default de cada producto.
+
+
+## 11. Remate editorial
+
+Cierre grande de las páginas de identidad personal: la palabra `lucas.` a
+escala de pantalla, en tinta con textura, y el punto coral. Es el
+`kit-remate`, un componente aparte del `kit-footer`.
+
+- **Dónde va:** raíz, `/contacto` y las páginas de identidad personal que lo
+  adopten (links, profe). Las herramientas y los estudios mantienen el
+  `kit-footer` compacto; el remate no lo reemplaza.
+- **Punto coral:** el remate es `lucas.`, así que el coral `#bb5943` es válido
+  (sección 2). Ningún producto con marca propia lo usa para su palabra.
+- **Normativa:** marca institucional con identidad propia. No lleva el remate
+  tal cual; si adopta alguna variante, es sobria y se aprueba aparte.
+- **Color:** papel `#efede6` y tinta `#242a26`, por variables
+  (`--kr-papel`, `--kr-tinta`, `--kr-punto`, `--kr-meta`, `--kr-linea`) o por
+  atributos. El remate no sigue el tema oscuro: es una pieza de papel.
+- **Movimiento:** la textura de tinta se mueve lento solo en escritorio con
+  puntero fino, mientras está a la vista y la pestaña está visible. En táctil
+  y con `prefers-reduced-motion` queda estática.
+- **Móvil/HIG:** targets de 44 px, foco visible, hover solo con puntero,
+  `env(safe-area-inset-bottom)` en táctil.
+- **Fuentes:** la página carga Space Grotesk y DM Mono (`kit-fonts.css`) y la
+  Instrument Serif de la raíz. El componente no trae fuentes propias.
+- **Copy:** por atributos (`eyebrow`, `titulo`, `descripcion`, `cta`,
+  `tagline`, `firma`, `links`...). Primera persona, voseo, corto. En
+  `/contacto` se pasa `cta="no"` porque la página ya es el contacto.
+- **Rollout:** brand, después www (que lo sirve), después cada proyecto, un PR
+  por proyecto.
+
+Uso y atributos: `kit/README.md`.
