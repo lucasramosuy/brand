@@ -52,3 +52,20 @@ test('kit-footer: el link a la raíz va primero salvo raiz="no"', () => {
 test('kit-header: el wordmark no se titula con la raíz', () => {
   assert.doesNotMatch(leer('kit-header.js'), /title="lucasramos\.uy"/);
 });
+
+test('kit-remate: táctil, foco, hover con puntero y movimiento acotado', () => {
+  const src = leer('kit-remate.js');
+  assert.match(src, /pointer:coarse/);
+  assert.match(src, /min-height:44px/);
+  assert.match(src, /:focus-visible/);
+  assert.match(src, /@media\(hover:hover\)\{a:hover/);
+  assert.match(src, /prefers-reduced-motion/);
+  assert.match(src, /IntersectionObserver/);
+  assert.match(src, /customElements\.define\("kit-remate"/);
+});
+
+test('kit-remate: el copy entra como texto, no como HTML', () => {
+  const src = leer('kit-remate.js');
+  assert.doesNotMatch(src, /innerHTML/);
+  assert.match(src, /urlSegura/);
+});
