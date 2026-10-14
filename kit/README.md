@@ -168,7 +168,7 @@ Variante compacta para herramientas y estudios (franja baja, sin titular, CTA ni
 <kit-remate variante="compacta" papel="#10171d" linea="#34464a" meta="#91aaa2" tinta="#e8f2ee" hover="#bff4dd"></kit-remate>
 ```
 
-`lucas.` enlaza a `palabra-href` (por defecto `/links/`). Muestra `firma` (por defecto "Hecho en Uruguay"), el © (`sufijo`, `texto` y `anio` valen igual) y `links` (por defecto solo `Contacto=/contacto/`). Colores: `papel`, `tinta`, `punto`, `meta`, `linea`, `hover`.
+`lucas.` enlaza a `palabra-href` (por defecto `/links/`). Muestra `firma` (por defecto "Hecho en Uruguay"), el © (`sufijo`, `texto` y `anio` valen igual) y `links` (por defecto solo `Contacto=/contacto/`). Colores: `papel`, `tinta`, `punto`, `meta`, `linea`, `hover`. El ancho del contenido sigue la variable CSS `--kr-ancho` (por defecto `1080px`).
 
 Atributos de copy, todos opcionales (`|` separa líneas): `eyebrow`, `titulo` (la segunda línea va en serif), `descripcion`, `cta` (`no` lo omite) y `cta-href`, `palabra`, `tagline`, `firma`, `texto`, `anio` o `sufijo` (`sufijo="Profe"` da «© <año> Lucas · Profe» con el año automático; usarlo en vez de un `texto` fijo), `links` (`Etiqueta=url,...`), `arriba` (`no` lo omite) y `arriba-href`. Los textos se insertan como texto, no como HTML, y las URLs se limitan a relativas, anclas, http(s) y mailto.
 
