@@ -23,7 +23,8 @@
 //                 CTA ni palabra gigante). Muestra "lucas." chico (enlaza a
 //                 palabra-href, por defecto "/links/"), firma ("Hecho en Uruguay"),
 //                 el © y los links (por defecto solo Contacto). Toma la paleta del
-//                 sitio por los atributos de color.
+//                 sitio por los atributos de color. Ancho del contenido: variable
+//                 CSS --kr-ancho (por defecto 1080px).
 // Color: atributos papel, tinta, punto, meta, linea, hover, o las variables CSS
 // --kr-papel, --kr-tinta, --kr-punto, --kr-meta, --kr-linea, --kr-hover en el sitio.
 // Movimiento: la textura de tinta se anima solo en escritorio con puntero fino,
@@ -63,7 +64,7 @@
     @media(hover:hover){a:hover{color:#923f2c}}
     @media(max-width:600px){.remate{margin-top:56px;padding-top:36px}.wrap{padding:0 24px}.heading{display:block}.titulo{font-size:42px;letter-spacing:-1.5px}.descripcion{font-size:15px;max-width:310px}.contacto{font-size:17px;margin-top:21px;width:max-content;margin-left:auto}.palabra{font-size:clamp(104px,33.6vw,202px);letter-spacing:-.069em;margin-top:66px;line-height:1.3}.tinta{animation:none;background-position:20% 40%}.meta{margin-top:22px}.meta span{flex:1}.meta span:last-child{flex:none;white-space:nowrap}footer{margin-top:40px;gap:12px}footer nav{gap:20px}.arriba{display:none}}
     .remate.compacta{margin-top:0;padding:0;background:var(--kr-papel,#efede6);border-top:1px solid var(--kr-linea,#bfc3b7)}
-    .compacta .cwrap{max-width:1080px;margin:auto;padding:28px 28px max(30px,env(safe-area-inset-bottom));display:flex;align-items:flex-end;justify-content:space-between;gap:24px}
+    .compacta .cwrap{max-width:var(--kr-ancho,1080px);margin:auto;padding:28px 28px max(30px,env(safe-area-inset-bottom));display:flex;align-items:flex-end;justify-content:space-between;gap:24px}
     .compacta .cpal{font-family:'Space Grotesk',sans-serif;font-size:44px;font-weight:700;letter-spacing:-.07em;line-height:1;white-space:nowrap;min-height:44px;display:flex;align-items:center}
     .compacta .cpal .punto{color:var(--kr-punto,#bb5943)}
     .compacta .cmeta{display:flex;flex-direction:column;gap:2px;margin:0 auto 4px 18px}
