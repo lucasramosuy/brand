@@ -69,3 +69,10 @@ test('kit-remate: el copy entra como texto, no como HTML', () => {
   assert.doesNotMatch(src, /innerHTML/);
   assert.match(src, /urlSegura/);
 });
+
+test('kit-remate: sufijo mantiene el año automático', () => {
+  const src = leer('kit-remate.js');
+  assert.match(src, /getFullYear\(\)/);
+  assert.match(src, /\["anio", "sufijo", "texto"\]/);
+  assert.match(src, /Lucas\$\{sufijo \? " · " \+ sufijo : ""\}/);
+});
