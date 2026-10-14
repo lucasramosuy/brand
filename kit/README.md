@@ -146,3 +146,24 @@ controles de formulario a 16 px en pantallas táctiles (evita el zoom de iOS),
 `kit-header`, `kit-footer`, `kit-rail` y `kit-masthead` resuelven sus propios
 targets de 44 px y su foco dentro del shadow DOM, porque un CSS global no les
 llega. Reglas completas en BRAND.md, sección 9.
+
+
+# kit/kit-remate.js
+
+Web component del remate editorial: el cierre grande `lucas.` con tinta y punto coral, para las páginas de identidad personal. No reemplaza a `kit-footer` (el pie compacto de las herramientas). Igual que header y footer, NO se copia: se sirve desde lucasramos.uy/brand/kit/.
+
+```html
+<script src="/brand/kit/kit-remate.js" defer></script>
+
+<!-- copy por defecto de la raíz -->
+<kit-remate></kit-remate>
+
+<!-- en /contacto: sin el enlace a contacto -->
+<kit-remate cta="no" arriba-href="#"></kit-remate>
+```
+
+Atributos de copy, todos opcionales (`|` separa líneas): `eyebrow`, `titulo` (la segunda línea va en serif), `descripcion`, `cta` (`no` lo omite) y `cta-href`, `palabra`, `tagline`, `firma`, `texto` o `anio`, `links` (`Etiqueta=url,...`), `arriba` (`no` lo omite) y `arriba-href`. Los textos se insertan como texto, no como HTML, y las URLs se limitan a relativas, anclas, http(s) y mailto.
+
+Color: atributos `papel`, `tinta`, `punto`, `meta`, `linea` o las variables `--kr-papel`, `--kr-tinta`, `--kr-punto`, `--kr-meta`, `--kr-linea`. Parts: `remate`, `titulo`, `palabra`, `pie`.
+
+La animación de la textura corre solo con puntero fino, a la vista, con la pestaña visible y sin `prefers-reduced-motion`; si no, queda estática. Se oculta al imprimir. La página tiene que cargar Space Grotesk, DM Mono (`kit-fonts.css`) e Instrument Serif.
