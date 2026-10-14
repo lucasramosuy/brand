@@ -15,7 +15,8 @@
 //   palabra       "lucas" (el punto coral se agrega solo)
 //   tagline       "Profesorado, clases y código"
 //   firma         "Hecho en Uruguay|Con tiempo y por gusto"
-//   texto         "© <año> Lucas" (anio cambia el año)
+//   texto         "© <año> Lucas" (anio cambia el año; sufijo agrega " · <sufijo>")
+//   sufijo        "Profe" -> "© <año> Lucas · Profe", con el año automático
 //   links         "Contacto=/contacto/,GitHub=https://github.com/lucasramosuy"
 //   arriba        "Volver arriba ↑" ("no" lo omite); arriba-href "#inicio"
 // Color: atributos papel, tinta, punto, meta, linea, o las variables CSS
@@ -55,7 +56,7 @@
     .arriba{min-height:44px;display:flex;align-items:center;font-family:'DM Mono',monospace;font-size:11px;text-transform:uppercase}
     a:focus-visible{outline:2px solid var(--kr-punto,#bb5943);outline-offset:5px}
     @media(hover:hover){a:hover{color:#923f2c}}
-    @media(max-width:600px){.remate{margin-top:56px;padding-top:36px}.wrap{padding:0 24px}.heading{display:block}.titulo{font-size:42px;letter-spacing:-1.5px}.descripcion{font-size:15px;max-width:310px}.contacto{font-size:17px;margin-top:21px;width:max-content;margin-left:auto}.palabra{font-size:clamp(104px,33.6vw,202px);letter-spacing:-.069em;margin-top:66px;line-height:1.3}.tinta{animation:none;background-position:20% 40%}.meta{margin-top:22px}.meta span{flex:1}footer{margin-top:40px;gap:12px}footer nav{gap:20px}.arriba{display:none}}
+    @media(max-width:600px){.remate{margin-top:56px;padding-top:36px}.wrap{padding:0 24px}.heading{display:block}.titulo{font-size:42px;letter-spacing:-1.5px}.descripcion{font-size:15px;max-width:310px}.contacto{font-size:17px;margin-top:21px;width:max-content;margin-left:auto}.palabra{font-size:clamp(104px,33.6vw,202px);letter-spacing:-.069em;margin-top:66px;line-height:1.3}.tinta{animation:none;background-position:20% 40%}.meta{margin-top:22px}.meta span{flex:1}.meta span:last-child{flex:none;white-space:nowrap}footer{margin-top:40px;gap:12px}footer nav{gap:20px}.arriba{display:none}}
     @media(pointer:coarse){.tinta{animation:none}a{min-height:44px}.wrap{padding-bottom:env(safe-area-inset-bottom)}}
     @media(prefers-reduced-motion:reduce){.tinta{animation:none!important}}
     @media print{:host{display:none!important}}
@@ -105,7 +106,7 @@
 
   class KitRemate extends HTMLElement {
     static get observedAttributes() {
-      return Object.keys(POR_DEFECTO).concat(["anio", "texto"], Object.keys(COLORES));
+      return Object.keys(POR_DEFECTO).concat(["anio", "sufijo", "texto"], Object.keys(COLORES));
     }
     connectedCallback() { this.vigilar(); this.render(); }
     disconnectedCallback() { this.soltar(); }
@@ -121,7 +122,8 @@
       }
       if (!this.shadowRoot) this.attachShadow({ mode: "open" });
       const anio = this.getAttribute("anio") || String(new Date().getFullYear());
-      const texto = this.getAttribute("texto") || `© ${anio} Lucas`;
+      const sufijo = this.getAttribute("sufijo");
+      const texto = this.getAttribute("texto") || `© ${anio} Lucas${sufijo ? " · " + sufijo : ""}`;
       const palabra = this.attr("palabra");
 
       const raiz = el("section", "remate");
