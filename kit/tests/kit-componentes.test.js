@@ -73,6 +73,15 @@ test('kit-remate: el copy entra como texto, no como HTML', () => {
 test('kit-remate: sufijo mantiene el año automático', () => {
   const src = leer('kit-remate.js');
   assert.match(src, /getFullYear\(\)/);
-  assert.match(src, /\["anio", "sufijo", "texto"\]/);
+  assert.match(src, /"anio", "sufijo", "texto"/);
   assert.match(src, /Lucas\$\{sufijo \? " · " \+ sufijo : ""\}/);
+});
+
+test('kit-remate: variante compacta sin titular, con links por defecto solo Contacto', () => {
+  const src = leer('kit-remate.js');
+  assert.match(src, /variante"\) === "compacta"/);
+  assert.match(src, /renderCompacta/);
+  assert.match(src, /\/links\//);
+  assert.match(src, /getAttribute\("links"\) \|\| "Contacto=\/contacto\/"/);
+  assert.match(src, /hover: "--kr-hover"/);
 });

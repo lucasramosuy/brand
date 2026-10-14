@@ -248,9 +248,16 @@ Cierre grande de las páginas de identidad personal: la palabra `lucas.` a
 escala de pantalla, en tinta con textura, y el punto coral. Es el
 `kit-remate`, un componente aparte del `kit-footer`.
 
-- **Dónde va:** raíz, `/contacto` y las páginas de identidad personal que lo
-  adopten (links, profe). Las herramientas y los estudios mantienen el
-  `kit-footer` compacto; el remate no lo reemplaza.
+- **Dónde va:** el remate completo va en la raíz, `/contacto` y las páginas de
+  identidad personal (links, profe). Las herramientas y los estudios llevan la
+  **variante compacta** (`variante="compacta"`): una franja baja con `lucas.`
+  chico, "Hecho en Uruguay", el © y solo Contacto. Reemplaza al `kit-footer`
+  en esos sitios.
+- **Variante compacta:** `lucas.` enlaza a `/links/` (como en el resto del
+  sistema, sección 2) y mantiene el punto coral, que es de `lucas.`. Usa la
+  paleta del sitio (fondo, línea, texto y hover por atributos), así que en un
+  estudio oscuro queda oscuro. No lleva titular, CTA, tagline, animación ni
+  "Volver arriba", y no repite `lucasramos.uy` ni GitHub.
 - **Punto coral:** el remate es `lucas.`, así que el coral `#bb5943` es válido
   (sección 2). Ningún producto con marca propia lo usa para su palabra.
 - **Normativa:** marca institucional con identidad propia. No lleva el remate
