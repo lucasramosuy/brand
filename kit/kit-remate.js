@@ -19,8 +19,6 @@
 //   sufijo        "Profe" -> "© <año> Lucas · Profe", con el año automático
 //   links         "Contacto=/contacto/,GitHub=https://github.com/lucasramosuy"
 //   arriba        "Volver arriba ↑" ("no" lo omite); arriba-href "#inicio"
-//   pantalla      "completa": la sección ocupa al menos toda la pantalla y el pie
-//                 queda pegado al borde inferior (cierre a pantalla plena).
 //   variante      "compacta": franja baja para herramientas y estudios (sin titular,
 //                 CTA ni palabra gigante). Muestra "lucas." chico (enlaza a
 //                 palabra-href, por defecto "/links/"), firma ("Hecho en Uruguay"),
@@ -62,13 +60,9 @@
     footer nav{display:flex;gap:28px}
     footer nav a{min-height:44px;display:flex;align-items:center;font-size:14px;font-weight:400}
     .arriba{min-height:44px;display:flex;align-items:center;font-family:'DM Mono',monospace;font-size:11px;text-transform:uppercase}
-    .remate.pantalla{min-height:100svh;min-height:100dvh;display:flex;flex-direction:column}
-    .remate.pantalla .wrap{flex:1 1 auto;display:flex;flex-direction:column}
-    .remate.pantalla .meta{padding-bottom:30px}
-    .remate.pantalla footer{margin-top:auto}
     a:focus-visible{outline:2px solid var(--kr-punto,#bb5943);outline-offset:5px}
     @media(hover:hover){a:hover{color:#923f2c}}
-    @media(max-width:600px){.remate{margin-top:56px;padding-top:36px}.wrap{padding:0 24px}.heading{display:block}.titulo{font-size:42px;letter-spacing:-1.5px}.descripcion{font-size:15px;max-width:310px}.contacto{font-size:17px;margin-top:21px;width:max-content;margin-left:auto}.palabra{font-size:clamp(104px,33.6vw,202px);letter-spacing:-.069em;margin-top:66px;line-height:1.3}.tinta{animation:none;background-position:20% 40%}.meta{margin-top:22px}.meta span{flex:1}.meta span:last-child{flex:none;white-space:nowrap}footer{margin-top:40px;gap:12px}footer nav{gap:20px}.arriba{display:none}.remate.pantalla .meta{padding-bottom:40px}}
+    @media(max-width:600px){.remate{margin-top:56px;padding-top:36px}.wrap{padding:0 24px}.heading{display:block}.titulo{font-size:42px;letter-spacing:-1.5px}.descripcion{font-size:15px;max-width:310px}.contacto{font-size:17px;margin-top:21px;width:max-content;margin-left:auto}.palabra{font-size:clamp(104px,33.6vw,202px);letter-spacing:-.069em;margin-top:66px;line-height:1.3}.tinta{animation:none;background-position:20% 40%}.meta{margin-top:22px}.meta span{flex:1}.meta span:last-child{flex:none;white-space:nowrap}footer{margin-top:40px;gap:12px}footer nav{gap:20px}.arriba{display:none}}
     .remate.compacta{margin-top:0;padding:0;background:var(--kr-papel,#efede6);border-top:1px solid var(--kr-linea,#bfc3b7)}
     .compacta .cwrap{max-width:var(--kr-ancho,1080px);margin:auto;padding:28px 28px max(30px,env(safe-area-inset-bottom));display:flex;align-items:flex-end;justify-content:space-between;gap:24px}
     .compacta .cpal{font-family:'Space Grotesk',sans-serif;font-size:44px;font-weight:700;letter-spacing:-.07em;line-height:1;white-space:nowrap;min-height:44px;display:flex;align-items:center}
@@ -127,7 +121,7 @@
 
   class KitRemate extends HTMLElement {
     static get observedAttributes() {
-      return Object.keys(POR_DEFECTO).concat(["anio", "sufijo", "texto", "variante", "palabra-href", "pantalla"], Object.keys(COLORES));
+      return Object.keys(POR_DEFECTO).concat(["anio", "sufijo", "texto", "variante", "palabra-href"], Object.keys(COLORES));
     }
     connectedCallback() { this.vigilar(); this.render(); }
     disconnectedCallback() { this.soltar(); }
@@ -151,7 +145,6 @@
 
       const raiz = el("section", "remate");
       raiz.setAttribute("part", "remate");
-      if (this.getAttribute("pantalla") === "completa") raiz.classList.add("pantalla");
       raiz.setAttribute("aria-label", "Contacto y cierre");
       const wrap = el("div", "wrap");
 
