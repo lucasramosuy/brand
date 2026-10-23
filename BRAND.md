@@ -6,11 +6,13 @@ propone con el detalle exacto y se aprueba antes de tocarse. Si algo no está
 escrito acá, no se inventa: se propone y se agrega.
 
 Desde el 22/10/2026 el kit adopta **Hallmark** (github.com/Nutlope/hallmark,
-MIT) como piso de calidad anti-slop: el criterio fijo del sistema es la
-**coherencia entre todos los productos**, y las reglas de Hallmark mandan
-sobre cualquier costumbre anterior de este documento. Lo que no es cuestión
-de gusto queda intacto: la privacidad (§6), las fuentes autoalojadas (§3),
-las rutas y el flujo por PR.
+MIT) en dos capas: su **piso** de calidad anti-slop (§12) y su **dirección de
+arte** (§13, tema Atelier) como lenguaje visual unificado. El criterio fijo
+del sistema es la **coherencia entre todos los productos**: un producto se
+reconoce por su acento y su nombre; todo lo demás habla el mismo idioma.
+Las reglas de Hallmark mandan sobre cualquier costumbre anterior de este
+documento. Lo que no es cuestión de gusto queda intacto: la privacidad (§6),
+las fuentes autoalojadas (§3), las rutas y el flujo por PR.
 
 ## 1. Regla de oro
 
@@ -39,7 +41,7 @@ Dos niveles, siempre en minúscula con punto final:
   links a la raíz ni acciones de salida: queda wordmark, nav y acciones propias.
 - En `kit-header`, pasar siempre `href` con la home del producto. El atributo
   `pill` queda deprecado.
-- El wordmark se compone en Space Grotesk bold con tracking cerrado.
+- El wordmark se compone en Hanken Grotesk 700 con tracking cerrado.
 
 ### Excepciones registradas
 
@@ -58,9 +60,15 @@ se self-hostean (Fontsource o woff2 propio); nunca Google Fonts.
 
 | Rol | Fuente | Alcance |
 |---|---|---|
-| Sans universal | **Space Grotesk** | Cuerpo, wordmarks, labels, botones, UI de todos los productos |
-| Serif display | Una por familia (tabla abajo) | Titulares |
+| Sans universal | **Hanken Grotesk** | Cuerpo, wordmarks, labels, botones, UI de todos los productos |
+| Serif display | **Sentient** (300 titulares, 400 serif chica) | Titulares y statements de todo el dominio |
 | Mono | **DM Mono** | Solo código, cifras, mediciones y datos técnicos |
+
+La pareja Sentient + Hanken Grotesk es la de la dirección de arte adoptada
+(§13) y es única para todo el dominio. Ambas se self-hostean como woff2
+propio servido desde `lucasramos.uy/brand/fonts/` (Sentient es de Fontshare,
+Hanken Grotesk es OFL); Space Grotesk y las serif por familia se retiran en
+la migración de cada producto.
 
 - **Labels y metadatos:** van en la cara de cuerpo (Space Grotesk), un paso
   más chicos, en sentence case o minúscula, sin tracking. Quedan eliminados
@@ -77,13 +85,6 @@ se self-hostean (Fontsource o woff2 propio); nunca Google Fonts.
   reemplaza la regla anterior del `<em>` de acento.
 - Máximo tres familias por página (display, cuerpo y una de rol puntual).
 
-Serif display por familia:
-
-- Raíz + /contacto: **Instrument Serif** (con Manrope como sans de texto)
-- /profe: **Fraunces**
-- Normativa + simuladores: **Source Serif 4**
-- Estudios (wallpapers, historias, qr, salida): sin serif; el titular va
-  entero en Space Grotesk.
 
 ## 4. Color
 
@@ -102,6 +103,8 @@ Estructura fija por producto: **base papel + tinta + un acento**.
 - Nada de blobs de luz, orbes difuminados ni halos de color detrás del texto:
   la profundidad sale de escalones de luminosidad y sombras con offset y
   blur (Hallmark 29).
+- Los tokens base (papel, tinta, hairline, tarjeta) son los de la dirección
+  de arte (§13.2); cada producto solo define su acento.
 - Modo: **contenido = claro, herramienta/editor = oscuro**.
 
 Acentos actuales:
@@ -146,7 +149,7 @@ botones primarios son tinta sólida, no acento.
 
 - Estados como chips con fondo tintado (el color al 12-14% sobre la tarjeta),
   punto de color y radio 8. Sin cápsulas ni barras laterales de acento.
-- Tipografía: Space Grotesk para la interfaz y DM Mono solo para datos
+- Tipografía: Hanken Grotesk para la interfaz y DM Mono solo para datos
   técnicos, autoalojadas, nunca fuentes del sistema.
 - Wordmark `panel.` en el sidebar (arriba) y centrado en la barra móvil.
 
@@ -187,7 +190,7 @@ Patrón único (referencia: fotograma):
 
    ```js
    await Promise.all([
-     document.fonts.load('700 56px "Space Grotesk"'),
+     document.fonts.load('700 56px "Hanken Grotesk"'),
      document.fonts.load('26px "DM Mono"')
    ]);
    await document.fonts.ready;
@@ -208,7 +211,7 @@ Estado: fotograma es la referencia. `qr.` y `salida.` migran con este patrón
 
 1. Elegir acento propio (que no choque con otro producto ni con el coral).
 2. Wordmark `producto.` con punto en el acento, enlazando a la home del producto.
-3. Space Grotesk self-hosteada; serif display si aplica; DM Mono solo para datos.
+3. Hanken Grotesk + Sentient self-hosteadas (§3); DM Mono solo para datos.
 4. Papel + tinta + acento; modo claro u oscuro según contenido/herramienta.
 5. Entrada en /links.
 6. Fuentes del sistema solo como fallback final, nunca como fuente visible.
@@ -310,8 +313,8 @@ compartida del dominio.
   y con `prefers-reduced-motion` queda estática.
 - **Móvil/HIG:** targets de 44 px, foco visible, hover solo con puntero,
   `env(safe-area-inset-bottom)` en táctil.
-- **Fuentes:** la página carga Space Grotesk y DM Mono (`kit-fonts.css`) y la
-  Instrument Serif de la raíz. El componente no trae fuentes propias.
+- **Fuentes:** la página carga Hanken Grotesk y DM Mono (`kit-fonts.css`) y
+  la Sentient del dominio. El componente no trae fuentes propias.
 - **Copy:** por atributos (`titulo`, `descripcion`, `cta`, `tagline`,
   `firma`, `links`...). Primera persona, voseo, corto. En `/contacto` se pasa
   `cta="no"` porque la página ya es el contacto.
@@ -389,3 +392,98 @@ de casa y se proponen para este documento, no se repiten por archivo.
   se adopta: la fuente de verdad del sistema es este BRAND.md y los tokens
   compartidos (`kit-fonts.css`, `kit-base.css`), no un comentario por
   archivo.
+
+## 13. Dirección de arte: Atelier
+
+El dominio adopta **Atelier**, el tema editorial de Hallmark, como lenguaje
+visual unificado. La idea: el catálogo de un taller en aire quieto. Papel
+limewash con grano, tinta umber profunda, hairlines, tipografía serif liviana
+y una sola señal de color por producto. Un producto se reconoce por su
+acento; todo lo demás (papel, tinta, textura, composición, controles) es el
+mismo idioma.
+
+Adaptaciones del tema al sistema propio:
+
+- Las fuentes se self-hostean siempre (§3); nada de Fontshare ni Google
+  Fonts en runtime.
+- La señal de Atelier es un pizarra frío; acá la señal es **el acento de
+  cada producto** (§4), con el coral reservado a `lucas.`. Se conserva su
+  volumen: el acento no pasa del ~4-5% de una pantalla (punto del wordmark,
+  subrayados, foco, acción).
+- El "aire" animado del tema (campo WebGL) es opcional y por producto; la
+  textura base obligatoria es el grano (13.2).
+- El generador de imágenes de Hallmark (API paga) no se usa.
+
+### 13.1 Tipografía
+
+- **Display y statements:** Sentient 300, roman, sentence case, interlineado
+  1.02 a 1.1, tracking -0.018em. Un solo peso y un solo color por titular.
+- **Serif chica:** Sentient 400 para h3, nombres en tarjetas y numerales;
+  nunca menos de 16 px ni en párrafos.
+- **Cuerpo y UI:** Hanken Grotesk 400, interlineado 1.6. Labels: Hanken un
+  paso más chicos, sentence case, sin tracking.
+- Tres pesos por página como máximo (Sentient 300 y 400, Hanken 400).
+- Nunca texto corrido en serif.
+
+### 13.2 Superficie y textura
+
+Tokens base del dominio (los define el kit; los productos no los pisan):
+
+| Token | Claro | Oscuro |
+|---|---|---|
+| `--kit-papel` | `oklch(94.5% 0.010 76)` | `oklch(21% 0.018 52)` |
+| `--kit-papel-2` | `oklch(91.8% 0.013 74)` | `oklch(25% 0.016 54)` |
+| `--kit-tinta` | `oklch(19% 0.024 52)` | `oklch(94% 0.010 76)` |
+| `--kit-tinta-2` | `oklch(31% 0.018 54)` | `oklch(86% 0.012 72)` |
+| `--kit-meta` | `oklch(47% 0.014 60)` | `oklch(66% 0.014 60)` |
+| `--kit-linea` | `oklch(81% 0.011 70)` | `oklch(38% 0.014 60)` |
+| `--kit-tarjeta` | `oklch(97.6% 0.007 82)` | `oklch(25.5% 0.016 54)` |
+
+- **Grano:** textura `feTurbulence` como data URI multiplicada suave sobre el
+  papel (el patrón `--grain` del tema). Nada de blobs, orbes ni gradientes
+  de luz (§12.1).
+- **Card stock:** las tarjetas son "papel algodón": fibra sutil, borde
+  iluminado arriba a la izquierda, sombra con offset y blur, hairline
+  interior. Nunca una tarjeta blanca plana ni un panel de vidrio con blur.
+- **Hairlines:** filas y listas se separan con hairlines; una tabla o lista
+  abre con una regla de tinta. La escala de espaciado del kit
+  (`--space-*`, múltiplos de 4 px) se define en la migración del kit.
+
+### 13.3 Controles
+
+- El control primario es una **hairline de tinta** (hover: relleno tinta,
+  texto papel); la acción secundaria es un link subrayado con el acento.
+  Ningún control va relleno con el color de acento.
+- Alturas de 44 a 52 px; foco con anillo del acento, instantáneo (§12.1).
+- Los campos sobre card stock son label sobre línea rulada.
+
+### 13.4 Composición
+
+- Una idea por pantalla, seteada en grande; un statement es una oración en
+  Sentient 300 a lo ancho de 9-10 columnas.
+- Listas y tablas ruladas; nada de grillas de tres cards iguales con ícono
+  arriba del título.
+- Imágenes: fotografía en luz cálida de día colgada pareja con su "wall
+  label", o el producto real construido o capturado. Nunca ilustración
+  dibujada ni stock genérico (§12.1).
+- El remate `lucas.` (§11) sigue siendo la pieza de firma; su textura de
+  tinta es la versión de marca del grano.
+
+### 13.5 Modo oscuro
+
+La misma dirección, invertida según §10: la tinta pasa a fondo (entonado,
+nunca negro puro), el papel a texto y el acento de cada producto no cambia.
+El grano se mantiene, más sutil que en claro.
+
+### 13.6 Voz
+
+Precisión de objeto: el objeto, el material, el número, los días. Sin
+superlativos, sin "descubrí", sin "comprá ahora" (suma a §5).
+
+### 13.7 Migración
+
+Los productos conservan su look actual hasta su PR de migración; la
+auditoría de cada repo (§12.3) mide contra esta dirección como destino. La
+ola 0 del rollout actualiza el kit (fuentes, tokens base, grano, card stock,
+controles hairline) y las olas siguientes migran producto por producto.
+
